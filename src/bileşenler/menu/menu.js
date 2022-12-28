@@ -1,13 +1,13 @@
-import './Menu.less'
+import "./Menu.less";
 
 // Kullanacağımız veri bu, üzerinde çalışın ama henüz hiçbir şeyi değiştirmeyin.
 let menuElemanlari = [
-  'Gündem',
-  'Dünya',
+  "Gündem",
+  "Dünya",
   "Ekonomi",
-  'Yazarlar',
-  'Burç Yorumları',
-  'Diğer'
+  "Yazarlar",
+  "Burç Yorumları",
+  "Diğer",
 ];
 
 /*
@@ -34,3 +34,27 @@ let menuElemanlari = [
 
   Adım 6: 'menuYapici' fonksiyonunu ve 'menuElemanlari' dizisini kullanarak menüyü oluşturun, ve döndürülen menüyü header'e ekleyin.
 */
+
+function menuYapici(arr) {
+  const menuDiv = document.createElement("div");
+  const menuList = document.createElement("ul");
+  const menuButton = document.querySelector(".menu-button");
+
+  menuDiv.classList.add("menu");
+  menuDiv.appendChild(menuList);
+
+  arr.forEach((haberBaslik) => {
+    const listItem = document.createElement("li");
+    listItem.textContent = haberBaslik;
+    menuList.appendChild(listItem);
+  });
+
+  menuButton.addEventListener("click", () => {
+    menuDiv.classList.toggle("menu--open");
+  });
+
+  return menuDiv;
+}
+
+const header = document.querySelector(".header");
+header.appendChild(menuYapici(menuElemanlari));
